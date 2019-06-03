@@ -93,9 +93,9 @@ function fz_is_request_secured () {
  * @return string
  */
 function fz_url_for ($url, $secured = false) {
-    if (fz_is_request_secured () && $secured === false)
+    if (! fz_is_request_secured () && $secured === false)
         $url =  'http://'.$_SERVER["SERVER_NAME"].url_for ($url);
-    else if (! fz_is_request_secured () && $secured === true)
+    else if (fz_is_request_secured () || $secured === true)
         $url =  'https://'.$_SERVER["SERVER_NAME"].url_for ($url);
 
     return $url;
